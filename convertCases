@@ -1,0 +1,75 @@
+function changeCase(identifier, targetCase){
+  if (identifier == "") return ""
+  if (identifier.includes("-") && identifier.includes("_")) return undefined
+  if (identifier.includes("-")){
+  if (identifier[identifier.indexOf("-")] == identifier[identifier.indexOf("-")+1]) return undefined
+  }
+  if (identifier.includes("_")){
+  //CodeWars 5 kuy
+  //Test done, but not attempt
+  
+  if (identifier[identifier.indexOf("_")] == identifier[identifier.indexOf("_")+1]) return undefined
+  }
+  res = []
+  switch(targetCase) {
+  case "snake": {
+      if (identifier.includes("-")){
+      while (identifier.includes("-")){
+          identifier = identifier.replace("-", "_")
+      } 
+      return identifier
+      }
+      for(let i = 0; i<identifier.length; i++) {
+          if (identifier[i] == identifier[i].toUpperCase()) {
+              res.push(identifier[i] = "_"+identifier[i].toLowerCase())
+              i++
+          }
+          res.push(identifier[i])
+      }
+      return res.join("")
+      break
+  
+  }
+  case "kebab": {
+      if (identifier.includes("_")){
+      while (identifier.includes("_")){
+          identifier = identifier.replace("_", "-")
+      } 
+      return identifier
+      }
+      for(let i = 0; i<identifier.length; i++) {
+          if (identifier[i] == identifier[i].toUpperCase()) {
+              res.push(identifier[i] = "-"+identifier[i].toLowerCase())
+              
+          }
+          if (identifier[i] != identifier[i].toUpperCase()) res.push(identifier[i])
+      }
+      return res.join("")
+      break
+  
+  }
+  case "camel": {
+      if (identifier.includes("-")) {
+      while(identifier.includes("-")) {
+        identifier = identifier.replace(identifier[identifier.indexOf("-")], identifier[identifier.indexOf("-")+1].toUpperCase()).replace(identifier[identifier.indexOf("-")+1], "")
+      }
+      return identifier
+      }
+      if (identifier.includes("_")) {
+      for(let i = 0; i<identifier.length; i++) {
+      if (identifier[i] == "_") {
+          res.push(identifier[i].replace("_", identifier[i+1].toUpperCase()))
+          i++
+      }
+      else {
+        res.push(identifier[i])
+      }
+      }
+      return res.join("")
+      }
+      return identifier
+  
+  }
+  default: return undefined
+  }
+}
